@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head
+        meta charset="UFT-8">
+        <title>MR CLUB</title>
+        <link rel="stylesheet" href="../Assets/CSS/estilos.css">
+
+    </head>
+    <body>
+        <div class="contenedor-formulario">
+            <h2>Registro Asociados</h2>
+            <form id="FormRegistro" action="" method="POST">
+                <div class="grupo-input">
+                    <label>Ingresar Documento</label>
+                    <input id="documento" type="number" placeholder="ejemplo: 1056892456">
+                </div>
+                <div class="grupo-input">
+                    <label>Ingresar Nombre: </label>
+                    <input type="text" id="nombre" required placeholder="Ingrese nombres completos">
+                </div>
+                <div class="grupo-input">
+                    <label>Ingresar Apellidos: </label>
+                    <input type="text" id="apellidos" required placeholder="Ingrese apellidos completos">
+                </div>
+                <div class="grupo-input">
+                    <label>Fecha de Nacimiento: </label>
+                    <input type="date" id="fechanacimiento" required placeholder="ejemplo 12/05/2026">
+                </div>
+                <div class="grupo-input">
+                    <label>Direccion de residencia: </label>
+                    <input type="text" id="direccion" required placeholder="ejemplo cra 24 # 12-125">
+                </div>
+                <div class="grupo-input">
+                    <label>Telefono: </label>
+                    <input type="number" id="telefono" required placeholder="ejemplo 3115648972">
+                </div>
+                <div class="grupo-input">
+                    <label>Email: </label>
+                    <input type="text" id="correo" required placeholder="ejemplo andres@gmail.com">
+                </div>
+                <div class="grupo-input">
+                    <label>Ciudad: </label>
+                    <select id="ciudad" required>
+                        <option value ="Sogamoso">Sogamoso </option>
+                        <option value="Duitama">Duitama </option>
+                        <option value="Nobsa">Nobsa</option>
+                    </select>
+                    <input type="text" id="ciudad" required placeholder="ejemplo: Ingrese Ciudad">
+                </div>
+                <div class="grupo-input">
+                    <label>Genero: </label>
+                    <label>
+                    <input type="radio" id="femenino" name="genero" values= "Femenino">
+                    <span>FEMENINO</span>
+                    </label>
+                    <label>
+                    <input type="radio" id="masculino" name="genero" values= "Masculino">
+                    <span>MASCULINO</span>
+                    </label>
+                    <label>
+                    <input type="radio" id="otro" name="genero" values= "Otro">
+                    <span>OTRO</span>
+                    </label>
+                </div>
+
+                <div class="grupo-botones">
+                    <button type="submit">Guardar</button>
+                    <button type="reset">Limpiar Formulario</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
