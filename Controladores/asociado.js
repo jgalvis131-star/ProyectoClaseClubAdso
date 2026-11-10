@@ -1,9 +1,18 @@
-const formregistro = document.getElementById('formregistro');
+const formregistro = document.getElementById('formRegistroAsociado');
 
 formregistro.addEventListener('submit', async function (e) {
+    alert('Formulario enviado'); // Mostrar un alert cuando se envíe el formulario
     e.preventDefault();
     const botonGuardar = formregistro.querySelector('button[type="submit"]');
     const asociado = Object.fromEntries(new FormData(formregistro).entries());
+
+    if (asociado.contraseña !== asociado.confirmarContraseña) {
+        document.getElementById('mensajeRegistro').textContent = 'Las contraseñas no coinciden.';
+    }
+
+    delete asociado.confirmarContraseña; // Eliminar el campo de confirmación de contraseña antes de enviar los datos
+
+    alert('Datos del asociado: ' + JSON.stringify(asociado)); // Mostrar los datos del asociado en un alert
     botonGuardar.disabled = true; // Deshabilitar el botón de envío
     try {
         const respuesta = await fetch(formregistro.action,{method: 'POST',headers: {'Content-Type': 'application/json'}, body: JSON.stringify(asociado)});

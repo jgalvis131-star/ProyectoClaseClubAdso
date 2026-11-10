@@ -1,6 +1,6 @@
 <?php
 
-class Conexxion {
+class Conexion {
     private $host = "localhost";
     private $baseDatos = "bd_club";
     private $usuario = "root";
