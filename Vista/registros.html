@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Préstamos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow border-0">
+                    <div class="card-header bg-warning text-dark py-3">
+                        <h4 class="mb-0"><i class="fas fa-hand-holding-usd me-2"></i> Registro de Préstamos</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form class="needs-validation" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label for="asociadoPrestamo" class="form-label">Asociado Solicitante</label>
+                                    <select class="form-select" id="asociadoPrestamo" required>
+                                        <option value="" selected disabled>Seleccione el asociado...</option>
+                                        <option value="1">Juan Pérez - 1023456789</option>
+                                        <option value="2">María Gómez - 1098765432</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="montoPrestamo" class="form-label">Monto Solicitado ($)</label>
+                                    <input type="number" class="form-control" id="montoPrestamo" min="0" step="0.01" required placeholder="Ej. 500000">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cuotas" class="form-label">Número de Cuotas</label>
+                                    <input type="number" class="form-control" id="cuotas" min="1" max="36" required placeholder="Ej. 12">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="tasaInteres" class="form-label">Tasa de Interés Mensual (%)</label>
+                                    <input type="number" class="form-control" id="tasaInteres" step="0.01" min="0" required placeholder="Ej. 1.5">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="fechaDesembolso" class="form-label">Fecha Estimada de Desembolso</label>
+                                    <input type="date" class="form-control" id="fechaDesembolso" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="garantia" class="form-label">Garantía / Fiador</label>
+                                    <input type="text" class="form-control" id="garantia" required placeholder="Nombre del fiador o descripción de la garantía">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="observacionesPrestamo" class="form-label">Observaciones</label>
+                                    <textarea class="form-control" id="observacionesPrestamo" rows="2" placeholder="Condiciones especiales..."></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button class="btn btn-warning text-dark fw-bold w-100 py-2" type="submit"><i class="fas fa-paper-plane me-2"></i> Solicitar Préstamo</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
