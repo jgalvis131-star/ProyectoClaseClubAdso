@@ -34,6 +34,7 @@ class Asociado {
         $this->conexion = $conexion->conectar();
     }
 
+
     public function guardar() {
         // La columna en tu BD sigue siendo 'contraseña', pero usamos ':pass' para evitar conflictos de PDO
         $sql = "INSERT INTO asociados (documento, nombres, apellidos, fechaNacimiento, genero, direccionResidencia, ciudad, telefono, email, contraseña) 

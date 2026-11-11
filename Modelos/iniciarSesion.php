@@ -20,6 +20,8 @@ try{
     $email = $datos['email'] ?? "";
     $contraseña = $datos['contraseña'] ?? "";
 
+
+
     if (!is_string($email) || !is_string($contraseña) || $email === "" || $contraseña === "") {
         http_response_code(400);
         throw new Exception("Email o contraseña son requeridos.");
