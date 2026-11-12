@@ -23,7 +23,7 @@
 
  async function cerrarSesion(){
         try{
-            const respuesta = await fetch('../Modelo/cerrarSesion.php', {method: "POST"});
+            const respuesta = await fetch("../Modelos/cerrarSesion.php", {method: "POST"});
 
             if (!respuesta.ok) {
                 throw new Error('Error al cerrar sesión');
@@ -33,6 +33,6 @@
             window.location.href = '../Vista/login.html';
 
         }catch(error){
-            console.error('Error al cerrar sesión:', error);
+            console.error("Error al cerrar sesión:", error);
         }
     }

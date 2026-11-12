@@ -16,7 +16,7 @@ if (formLogin) {
 
         try {
             const datosForm = Object.fromEntries(new FormData(formLogin));
-            const ruta = formLogin.action || '../Modelo/IniciarSesion.php';
+            const ruta = formLogin.action || '../Modelos/IniciarSesion.php';
 
             const respuesta = await fetch(ruta, {
                 method: "POST",
