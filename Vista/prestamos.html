@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <title>CLUB ACERIAS - Gestión de Préstamos</title>
+    <style>
+        body.bg-moderno {
+            background-color: #F1F5F9;
+            color: #1E293B;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Barra superior Azul Marino Profundo */
+        .header-mr {
+            background-color: #1E293B;
+            color: #FFFFFF;
+            padding: 18px 30px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+        }
+
+        /* Tarjeta contenedora de tabla */
+        .card-tabla {
+            background-color: #FFFFFF;
+            border: none;
+            border-top: 4px solid #2563EB;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+            overflow: hidden;
+        }
+
+        /* Encabezado de tabla sobrio */
+        .table thead th {
+            background-color: #0F172A;
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            padding: 14px 16px;
+        }
+
+        .table tbody td {
+            padding: 13px 16px;
+            color: #334155;
+            border-color: #E2E8F0;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #F8FAFC;
+        }
+
+        /* Botón principal Azul Rey */
+        .btn-azul-principal {
+            background-color: #2563EB;
+            color: #FFFFFF;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-azul-principal:hover {
+            background-color: #1D4ED8;
+            color: #FFFFFF;
+            transform: translateY(-1px);
+        }
+
+        /* Modal con detalle superior */
+        .modal-content {
+            border: none;
+            border-top: 4px solid #2563EB;
+            border-radius: 12px;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .modal-title {
+            color: #0F172A;
+            font-weight: 700;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .form-control,
+        .form-select {
+            border: 1.5px solid #CBD5E1;
+            border-radius: 8px;
+            padding: 10px 12px;
+            background-color: #F8FAFC;
+            color: #0F172A;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: #FFFFFF;
+            border-color: #2563EB;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+    </style>
+</head>
+
+<body class="bg-moderno">
+    <header class="header-mr d-flex justify-content-between align-items-center gap-3">
+        <h1 class="h4 mb-0 fw-bold">Gestión de Préstamos</h1>
+        <a class="btn btn-outline-light btn-sm px-3 py-2 rounded-3" href="dashboard.html">
+            <i class="bi bi-arrow-left me-1"></i>
+            Volver al panel
+        </a>
+    </header>
+
+    <main class="container py-4">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
+            <p class="mb-0 text-secondary fw-medium">
+                Consulta los préstamos registrados y su información detallada.
+            </p>
+            <div>
+                <a id="nuevoPrestamo" href="#" class="btn btn-azul-principal d-none text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalPrestamo">
+                    <i class="bi bi-plus-lg me-1"></i>
+                    Nuevo Préstamo
+                </a>
+            </div>
+        </div>
+
+        <div class="card card-tabla">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Asociado</th>
+                            <th scope="col">Valor Préstamo</th>
+                            <th scope="col">Tasa Interés (%)</th>
+                            <th scope="col">Cuotas</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Estado</th>
+                            <th id="encabezadoAcciones" class="d-none" scope="col">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaPrestamos">
+                        <tr>
+                            <td colspan="7" class="text-center py-4 text-muted">
+                                Cargando préstamos...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toastPrestamo" class="toast align-items-center text-bg-primary border-0 rounded-3" role="status"
+            aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div id="mensajePrestamos" class="toast-body fw-medium"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Cerrar"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPrestamo" tabindex="-1" aria-labelledby="tituloModalPrestamo" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formPrestamo">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="tituloModalPrestamo">
+                            Nuevo Préstamo
+                        </h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="idPrestamo" value="" />
+                        <div class="mb-3">
+                            <label for="idAsociado" class="form-label">Asociado</label>
+                            <select class="form-select" id="idAsociado" required>
+                                <option value="">Seleccione un asociado...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="valorPrestamo" class="form-label">Valor del Préstamo</label>
+                            <input type="number" class="form-control" id="valorPrestamo" min="0" step="0.01" required placeholder="Ej: 5000000" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="tasaInteres" class="form-label">Tasa de Interés (%)</label>
+                            <input type="number" class="form-control" id="tasaInteres" min="0" step="0.01" required placeholder="Ej: 1.5" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="numeroCuotas" class="form-label">Número de Cuotas</label>
+                            <input type="number" class="form-control" id="numeroCuotas" min="1" required placeholder="Ej: 12" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaPrestamo" class="form-label">Fecha del Préstamo</label>
+                            <input type="date" class="form-control" id="fechaPrestamo" required />
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top-0 pt-0">
+                        <button type="button" class="btn btn-secondary rounded-3" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="guardarPrestamo" type="submit" class="btn btn-azul-principal">Guardar Préstamo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../Controladores/prestamos.js"></script>
+</body>
+
+</html>
